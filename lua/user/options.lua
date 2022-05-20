@@ -13,6 +13,8 @@ local options = {
 	equalalways = true,      --Make all windows the same size. Under consideration for being turned off
 	termguicolors = true,
 	langmenu = "none",
+	number = true,
+	relativenumber = true,
 }
 
 for k, v in pairs(options) do
@@ -21,3 +23,4 @@ end
 
 vim.cmd [[set diffopt+=horizontal]]
 vim.cmd [[set iskeyword+=-]]
+vim.cmd [[set matchpairs+=<:>]]
