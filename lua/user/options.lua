@@ -37,3 +37,5 @@ vim.cmd [[syntax enable]]
 vim.cmd [[set diffopt+=horizontal]]
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set matchpairs+=<:>]]
+vim.cmd [[set statusline=%{FugitiveStatusline()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P]]
+
