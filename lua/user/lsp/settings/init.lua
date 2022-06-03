@@ -3,7 +3,22 @@ if not status_ok then
   return
 end
 
-local status_ok, jsonls = pcall(require, "user.lsp.settings.jsonls")
-if status_ok then
-  lspconfig.jsonls.setup(jsonls)
+local lsp_servers = {
+  "jsonls",
+  "sumneko_lua",
+  "rust_analyzer",
+  "phpactor",
+}
+
+local base_conf = require("user.lsp.settings.base_conf")
+
+for _,server in ipairs(lsp_servers) do
+  local status_ok, config = pcall(require, "user.lsp.settings."..server)
+  local add_conf = {}
+  if status_ok then
+    add_conf = config
+  end
+  lspconfig[server].setup(
+    vim.tbl_extend("force", base_conf, add_conf)
+  )
 end
