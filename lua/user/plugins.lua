@@ -68,6 +68,10 @@ return packer.startup(function(use)
   -- LSP --
   use "neovim/nvim-lspconfig"
   use "williamboman/nvim-lsp-installer"
+
+  -- Telescope (fuzzy searching) --
+  use "nvim-telescope/telescope.nvim"
+  use "BurntSushi/ripgrep"
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
