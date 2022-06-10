@@ -10,9 +10,3 @@ telescope.setup({
     }
   }
 })
-
-local keymap = vim.api.nvim_set_keymap
-local bi = require("telescope.builtin")
-local opts = { noremap = true, silent = true }
-
-keymap('n', 'fw', bi.grep_string(), opts)

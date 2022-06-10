@@ -30,3 +30,8 @@ keymap("v", ">", ">gv", opts)
 
 -- Open file explorer sidebar --
 keymap("n", "<A-1>", ":Lex 30<CR>", opts)
+
+-- Telescope --
+keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
+keymap("n", "fw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", opts)
+keymap("n", "fd", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
