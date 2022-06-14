@@ -8,6 +8,7 @@ local lsp_servers = {
   "sumneko_lua",
   "rust_analyzer",
   "phpactor",
+  "eslint",
 }
 
 local base_conf = require("user.lsp.settings.base_conf")
