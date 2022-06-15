@@ -9,6 +9,7 @@ local lsp_servers = {
   "rust_analyzer",
   "phpactor",
   "eslint",
+  "bashls",
 }
 
 local base_conf = require("user.lsp.settings.base_conf")
