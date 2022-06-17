@@ -72,6 +72,12 @@ return packer.startup(function(use)
   -- Telescope (fuzzy searching) --
   use "nvim-telescope/telescope.nvim"
   use "BurntSushi/ripgrep"
+
+  -- CTAGS --
+  use "ludovicchabant/vim-gutentags"
+
+  -- Syntax highlighting --
+  use "nvim-treesitter/nvim-treesitter"
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
