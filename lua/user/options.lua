@@ -4,7 +4,6 @@ local options = {
     belloff = "",           --always ring bell (for practicing purposes)
     errorbells = true,
     browsedir = "last",
-    smartindent = true,
     clipboard = "unnamedplus",
     cmdheight = 2,
     cursorline = true,
@@ -35,9 +34,10 @@ for k, v in pairs(options) do
         vim.opt[k] = v
 end
 
+vim.cmd [[set exrc]]
 vim.cmd [[syntax enable]]
 vim.cmd [[set diffopt+=horizontal]]
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set matchpairs+=<:>]]
 vim.cmd [[set statusline=%{FugitiveStatusline()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P]]
-
+vim.cmd [[set statusline+=%{gutentags#statusline('\ [',']')}]]
