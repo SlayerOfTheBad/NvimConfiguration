@@ -28,6 +28,7 @@ local options = {
     wildmode = "longest:full,full",
     exrc = true,
     secure = true,
+    foldlevel = 2,
 }
 
 for k, v in pairs(options) do
@@ -35,7 +36,7 @@ for k, v in pairs(options) do
 end
 
 vim.cmd [[set exrc]]
-vim.cmd [[syntax enable]]
+-- vim.cmd [[syntax enable]]
 vim.cmd [[set diffopt+=horizontal]]
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set matchpairs+=<:>]]
