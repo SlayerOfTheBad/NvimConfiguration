@@ -84,6 +84,9 @@ return packer.startup(function(use)
 
   -- Autopairing --
   use "windwp/nvim-autopairs"
+
+  -- PHP specific --
+  use "phpactor/phpactor"
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
