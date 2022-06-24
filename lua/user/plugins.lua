@@ -77,7 +77,13 @@ return packer.startup(function(use)
   use "ludovicchabant/vim-gutentags"
 
   -- Syntax highlighting --
-  use "nvim-treesitter/nvim-treesitter"
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ':TSUpdate',
+  }
+
+  -- Autopairing --
+  use "windwp/nvim-autopairs"
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
