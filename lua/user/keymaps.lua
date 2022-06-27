@@ -29,7 +29,7 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Open file explorer sidebar --
-keymap("n", "<A-1>", ":Lex 30<CR>", opts)
+keymap("n", "<A-1>", ":NERDTree<CR>", opts)
 
 -- Telescope --
 keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)

@@ -69,9 +69,9 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig"
   use "williamboman/nvim-lsp-installer"
 
-  -- Telescope (fuzzy searching) --
+  -- Navigation --
   use "nvim-telescope/telescope.nvim"
-  use "BurntSushi/ripgrep"
+  use "preservim/nerdtree"
 
   -- CTAGS --
   use "ludovicchabant/vim-gutentags"
@@ -86,7 +86,10 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"
 
   -- PHP specific --
-  use "phpactor/phpactor"
+  use {
+    "phpactor/phpactor",
+    ft = {'php'}
+  }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
