@@ -15,8 +15,6 @@ keymap("n", "<A-Down>", ":resize -2<CR>", opts)
 keymap("n", "<A-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<A-Right>", ":vertical resize +2<CR>", opts)
 
-keymap("n", "<leader>e", ":Lex 20<CR>", opts)
-
 --Navigate buffers--
 keymap("n", "<S-j>", ":bnext<CR>", opts)
 keymap("n", "<S-k>", ":bprevious<CR>", opts)
@@ -29,7 +27,7 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Open file explorer sidebar --
-keymap("n", "<A-1>", ":NERDTree<CR>", opts)
+keymap("n", "<A-1>", ":NERDTreeToggle<CR>", opts)
 
 -- Telescope --
 keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)

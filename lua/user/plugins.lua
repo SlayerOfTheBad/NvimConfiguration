@@ -72,6 +72,9 @@ return packer.startup(function(use)
   -- Navigation --
   use "nvim-telescope/telescope.nvim"
   use "preservim/nerdtree"
+  use "Xuyuanp/nerdtree-git-plugin"
+  use "tiagofumo/vim-nerdtree-syntax-highlight"
+  use "ryanoasis/vim-devicons"
 
   -- CTAGS --
   use "ludovicchabant/vim-gutentags"
@@ -90,6 +93,9 @@ return packer.startup(function(use)
     "phpactor/phpactor",
     ft = {'php'}
   }
+
+  -- Terminal --
+  use "akinsho/toggleterm.nvim"
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
