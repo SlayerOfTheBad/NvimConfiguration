@@ -33,3 +33,6 @@ keymap("n", "<A-1>", ":NERDTreeToggle<CR>", opts)
 keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
 keymap("n", "fw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", opts)
 keymap("n", "fd", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+
+-- Terminal --
+keymap("t", "<ESC>", "<C-\\><C-n>", opts)

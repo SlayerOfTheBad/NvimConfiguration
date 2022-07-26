@@ -7,6 +7,11 @@ treesitter.setup({
   ensure_installed = {
     "c", "lua", "rust", "php", "javascript", "json", "yaml",
   },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  },
   highlight = {
     enable = true,
     disable = {},
