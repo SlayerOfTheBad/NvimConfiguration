@@ -51,6 +51,8 @@ return packer.startup(function(use)
 
   -- Colorschemes --
   use "rafi/awesome-vim-colorschemes"
+  use "vim-airline/vim-airline"
+  use "vim-airline/vim-airline-themes"
 
   -- Autocompletion + snippets --
   use "hrsh7th/nvim-cmp"
@@ -78,12 +80,14 @@ return packer.startup(function(use)
 
   -- CTAGS --
   use "ludovicchabant/vim-gutentags"
+  use "preservim/tagbar"
 
   -- Syntax highlighting --
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ':TSUpdate',
   }
+  use "p00f/nvim-ts-rainbow";
 
   -- Autopairing --
   use "windwp/nvim-autopairs"
@@ -91,7 +95,6 @@ return packer.startup(function(use)
   -- PHP specific --
   use {
     "phpactor/phpactor",
-    ft = {'php'}
   }
 
   -- Terminal --
