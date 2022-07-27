@@ -9,6 +9,7 @@ local lsp_servers = {
   "rust_analyzer",
   "phpactor",
   "eslint",
+  "tsserver",
   "bashls",
 }
 

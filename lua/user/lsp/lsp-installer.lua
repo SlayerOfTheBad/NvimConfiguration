@@ -8,6 +8,7 @@ local opts = {
     "rust_analyzer",
     "phpactor",
     "eslint",
+    "tsserver",
   },
   automatic_installation = true,
 }

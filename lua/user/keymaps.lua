@@ -16,8 +16,9 @@ keymap("n", "<A-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<A-Right>", ":vertical resize +2<CR>", opts)
 
 --Navigate buffers--
-keymap("n", "<S-j>", ":bnext<CR>", opts)
-keymap("n", "<S-k>", ":bprevious<CR>", opts)
+-- keymap("n", "<S-j>", ":bnext<CR>", opts)
+-- keymap("n", "<S-k>", ":bprevious<CR>", opts)
+keymap("n", "sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
 
 -- Insert empty line and stay in normal mode --
 keymap("n", "oo", "o<ESC>", opts)
@@ -33,6 +34,7 @@ keymap("n", "<A-1>", ":NERDTreeToggle<CR>", opts)
 keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
 keymap("n", "fw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", opts)
 keymap("n", "fd", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+keymap("n", "fr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
 
 -- Terminal --
 keymap("t", "<ESC>", "<C-\\><C-n>", opts)
