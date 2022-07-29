@@ -97,6 +97,9 @@ return packer.startup(function(use)
     "phpactor/phpactor",
   }
 
+  -- Rust specific --
+  use "simrat39/rust-tools.nvim"
+
   -- Terminal --
   use "akinsho/toggleterm.nvim"
   if PACKER_BOOTSTRAP then
