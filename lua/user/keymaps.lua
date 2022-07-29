@@ -3,6 +3,11 @@ local opts = { noremap = true, silent = true }
 -- Shorten keymap command --
 local keymap = vim.api.nvim_set_keymap
 
+keymap("", "<Space>", "<Nop>", opts)
+vim.cmd [[let mapleader="\ "]]
+-- vim.g.mapleader = " "
+-- vim.g.maplocalleader = " "
+
 -- Normal mode --
 -- Better window navigation
 keymap("n", "<A-h>", "<C-w>h", opts)
@@ -16,9 +21,7 @@ keymap("n", "<A-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<A-Right>", ":vertical resize +2<CR>", opts)
 
 --Navigate buffers--
--- keymap("n", "<S-j>", ":bnext<CR>", opts)
--- keymap("n", "<S-k>", ":bprevious<CR>", opts)
-keymap("n", "sb", "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
+keymap("n", "sb", "<cmd>lua require('telescope.builtin').buffers({initial_mode=\"normal\"})<CR>", opts)
 
 -- Insert empty line and stay in normal mode --
 keymap("n", "oo", "o<ESC>", opts)
