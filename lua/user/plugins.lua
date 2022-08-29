@@ -77,6 +77,15 @@ return packer.startup(function(use)
   use "Xuyuanp/nerdtree-git-plugin"
   use "tiagofumo/vim-nerdtree-syntax-highlight"
   use "ryanoasis/vim-devicons"
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    }
+  }
 
   -- CTAGS --
   use "ludovicchabant/vim-gutentags"
