@@ -4,9 +4,8 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 keymap("", "<Space>", "<Nop>", opts)
-vim.cmd [[let mapleader="\ "]]
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Normal mode --
 -- Better window navigation
@@ -31,7 +30,9 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Open file explorer sidebar --
-keymap("n", "<A-1>", ":NERDTreeToggle<CR>", opts)
+keymap("n", "\\", ":Neotree filesystem float reveal<CR>", opts)
+keymap("n", "<leader>b", ":Neotree toggle show buffers float<CR>", opts)
+keymap("n", "<leader>g", ":Neotree toggle show git_status float<CR>", opts)
 
 -- Telescope --
 keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
