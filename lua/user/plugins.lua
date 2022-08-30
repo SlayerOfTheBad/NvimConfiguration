@@ -73,9 +73,9 @@ return packer.startup(function(use)
 
   -- Navigation --
   use "nvim-telescope/telescope.nvim"
-  use "preservim/nerdtree"
-  use "Xuyuanp/nerdtree-git-plugin"
-  use "tiagofumo/vim-nerdtree-syntax-highlight"
+  -- use "preservim/nerdtree"
+  -- use "Xuyuanp/nerdtree-git-plugin"
+  -- use "tiagofumo/vim-nerdtree-syntax-highlight"
   use "ryanoasis/vim-devicons"
   use {
     "nvim-neo-tree/neo-tree.nvim",
