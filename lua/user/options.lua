@@ -17,7 +17,7 @@ local options = {
   number = true,
   relativenumber = true,
   expandtab = true,
-  shiftwidth = 2,
+  shiftwidth = 4,
   tabstop = 4,
   ruler = true,
   scrolloff = 5,
@@ -41,7 +41,6 @@ vim.g.airline_powerline_fonts=1
 vim.g["airline#extensions#tabline#enabled"]=1
 
 vim.cmd [[set exrc]]
--- vim.cmd [[syntax enable]]
 vim.cmd [[set diffopt+=horizontal]]
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set matchpairs+=<:>]]
