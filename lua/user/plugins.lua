@@ -98,6 +98,12 @@ return packer.startup(function(use)
   }
   use "p00f/nvim-ts-rainbow";
 
+  -- Debugging --
+  use "mfussenegger/nvim-dap"
+  use "rcarriga/nvim-dap-ui"
+  use "theHamsta/nvim-dap-virtual-text"
+  use "nvim-telescope/telescope-dap.nvim"
+
   -- Autopairing --
   use "windwp/nvim-autopairs"
 
