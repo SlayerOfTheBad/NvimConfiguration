@@ -35,16 +35,5 @@ neotree.setup({
   },
   filesystem = {
     follow_current_file = true,
-    window = {
-      mappings = {
-        ["A"]  = "git_add_all",
-        ["gu"] = "git_unstage_file",
-        ["ga"] = "git_add_file",
-        ["gr"] = "git_revert_file",
-        ["gc"] = "git_commit",
-        ["gp"] = "git_push",
-        ["gg"] = "git_commit_and_push",
-      }
-    }
   },
 })
