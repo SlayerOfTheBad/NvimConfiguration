@@ -5,7 +5,7 @@ end
 
 treesitter.setup({
   ensure_installed = {
-    "c", "lua", "rust", "php", "javascript", "json", "yaml",
+    "c", "lua", "rust", "php", "javascript", "json", "yaml", "haskell"
   },
   rainbow = {
     enable = true,
