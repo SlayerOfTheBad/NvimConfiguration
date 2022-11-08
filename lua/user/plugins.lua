@@ -48,6 +48,7 @@ return packer.startup(function(use)
   use "tpope/vim-surround"
   use "tpope/vim-commentary"
   use "tpope/vim-repeat"
+  use "tpope/vim-sleuth"
 
   -- Colorschemes --
   use "rafi/awesome-vim-colorschemes"
@@ -117,6 +118,14 @@ return packer.startup(function(use)
 
   -- Terminal --
   use "akinsho/toggleterm.nvim"
+
+  use {
+    '/home/jacob/Documents/duck.nvim',
+    config = function()
+        vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
+        vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
+    end
+}
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

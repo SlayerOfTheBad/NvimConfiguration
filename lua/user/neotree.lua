@@ -33,6 +33,9 @@ neotree.setup({
       },
     },
   },
+  buffers = {
+    show_unloaded = true,
+  },
   filesystem = {
     filtered_items = {
       always_show = {
