@@ -19,9 +19,6 @@ keymap("n", "<A-Down>", ":resize -2<CR>", opts)
 keymap("n", "<A-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<A-Right>", ":vertical resize +2<CR>", opts)
 
---Navigate buffers--
-keymap("n", "sb", "<cmd>lua require('telescope.builtin').buffers({initial_mode=\"normal\"})<CR>", opts)
-
 -- Insert empty line and stay in normal mode --
 keymap("n", "oo", "o<ESC>", opts)
 keymap("n", "OO", "O<ESC>", opts)
@@ -42,3 +39,5 @@ keymap("n", "fr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", 
 
 -- Terminal --
 keymap("t", "<ESC>", "<C-\\><C-n>", opts)
+
+-- vim.api.nvim_add_user_command('FuckMyChanges', 's/\\v\\<{7}.*\\n((.*\\n){-})\\={7}(.*\\n){-}\\>{7}.*\\n/\\1/g')
