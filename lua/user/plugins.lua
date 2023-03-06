@@ -68,9 +68,17 @@ return packer.startup(function(use)
 
   use "rafamadriz/friendly-snippets"
 
-  -- LSP --
+  -- Mason --
+  use "williamboman/mason.nvim"
   use "neovim/nvim-lspconfig"
-  use "williamboman/nvim-lsp-installer"
+  use "williamboman/mason-lspconfig.nvim"
+  use "mfussenegger/nvim-dap"
+  use "jose-elias-alvarez/null-ls.nvim"
+
+  -- Debugging --
+  use "rcarriga/nvim-dap-ui"
+  use "theHamsta/nvim-dap-virtual-text"
+  use "nvim-telescope/telescope-dap.nvim"
 
   -- Navigation --
   use "nvim-telescope/telescope.nvim"
@@ -99,11 +107,6 @@ return packer.startup(function(use)
   }
   use "p00f/nvim-ts-rainbow";
 
-  -- Debugging --
-  use "mfussenegger/nvim-dap"
-  use "rcarriga/nvim-dap-ui"
-  use "theHamsta/nvim-dap-virtual-text"
-  use "nvim-telescope/telescope-dap.nvim"
 
   -- Autopairing --
   use "windwp/nvim-autopairs"
@@ -119,13 +122,6 @@ return packer.startup(function(use)
   -- Terminal --
   use "akinsho/toggleterm.nvim"
 
-  use {
-    '/home/jacob/Documents/duck.nvim',
-    config = function()
-        vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
-        vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
-    end
-}
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

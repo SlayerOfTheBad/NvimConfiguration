@@ -1,4 +1,4 @@
-local status_ok, tools = pcall(require, 'rust-tools')
+local status_ok, tools = pcall(require, 'user.lsp.rust-tools')
 if not status_ok then
   return
 end

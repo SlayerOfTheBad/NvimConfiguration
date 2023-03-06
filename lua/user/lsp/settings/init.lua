@@ -1,27 +1,20 @@
 local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
+local status_ok_m, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not status_ok or not status_ok_m then
   return
 end
 
-local lsp_servers = {
-  "jsonls",
-  "sumneko_lua",
-  "rust_analyzer",
-  "phpactor",
-  "eslint",
-  "tsserver",
-  "bashls",
-}
-
 local base_conf = require("user.lsp.settings.base_conf")
 
-for _,server in ipairs(lsp_servers) do
-  local status_ok, config = pcall(require, "user.lsp.settings."..server)
-  local add_conf = {}
-  if status_ok then
-    add_conf = config
-  end
-  lspconfig[server].setup(
-    vim.tbl_extend("force", base_conf, add_conf)
-  )
-end
+mason_lspconfig.setup_handlers({
+  function (server)
+    local status_ok, config = pcall(require, "user.lsp.settings."..server);
+    if status_ok then
+        lspconfig[server].setup(
+          vim.tbl_extend("force", base_conf, config)
+        )
+    else
+      lspconfig[server].setup(base_conf)
+    end
+  end,
+})
