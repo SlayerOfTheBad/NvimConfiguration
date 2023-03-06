@@ -15,5 +15,3 @@ local opts = {
 }
 
 mason.setup(opts);
-
--- require "user.lsp.settings"
