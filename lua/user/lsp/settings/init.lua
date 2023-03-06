@@ -10,9 +10,9 @@ mason_lspconfig.setup_handlers({
   function (server)
     local status_ok, config = pcall(require, "user.lsp.settings."..server);
     if status_ok then
-        lspconfig[server].setup(
-          vim.tbl_extend("force", base_conf, config)
-        )
+      lspconfig[server].setup(
+        vim.tbl_extend("force", base_conf, config)
+      )
     else
       lspconfig[server].setup(base_conf)
     end
