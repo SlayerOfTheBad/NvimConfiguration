@@ -17,4 +17,7 @@ mason_lspconfig.setup_handlers({
       lspconfig[server].setup(base_conf)
     end
   end,
+  ["rust_analyzer"] = function ()
+    require('user.lsp.settings.rust_analyzer')
+  end,
 })
