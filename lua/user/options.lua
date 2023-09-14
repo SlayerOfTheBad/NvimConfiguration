@@ -30,6 +30,7 @@ local options = {
   exrc = true,
   secure = true,
   foldlevel = 2,
+  spelllang = 'en_gb,en_us,nl',
 }
 
 for k, v in pairs(options) do

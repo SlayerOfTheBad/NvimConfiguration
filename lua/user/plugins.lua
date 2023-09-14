@@ -107,7 +107,6 @@ return packer.startup(function(use)
   }
   use "p00f/nvim-ts-rainbow";
 
-
   -- Autopairing --
   use "windwp/nvim-autopairs"
 
