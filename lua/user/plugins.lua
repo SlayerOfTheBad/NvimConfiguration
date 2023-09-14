@@ -68,6 +68,8 @@ return packer.startup(function(use)
 
   use "rafamadriz/friendly-snippets"
 
+  use { 'SlayerOfTheBad/idris2-nvim', requires = { 'neovim/nvim-lspconfig', 'MunifTanjim/nui.nvim' } }
+
   -- Mason --
   use "williamboman/mason.nvim"
   use "neovim/nvim-lspconfig"
