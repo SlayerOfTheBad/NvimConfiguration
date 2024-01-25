@@ -9,6 +9,19 @@ dap.adapters.php = {
   args = { os.getenv("HOME") .. "/Documents/vscode-php-debug/out/phpDebug.js" }
 }
 
+-- dap.adapters.lldb = function(on_adapter)
+--   local default_adapter = require("rustaceanvim.config.internal").dap.adapter()
+--   local adapter = vim.deepcopy(default_adapter);
+
+--   adapter.sourceLanguages = { }
+--   adapter.enrich_config = function(config, on_config)
+--     config.initCommands = {}
+--     on_config(config)
+--   end
+
+--   on_adapter(adapter)
+-- end
+
 dap.configurations.php = {
   {
     type = "php",
@@ -20,6 +33,8 @@ dap.configurations.php = {
     }
   }
 }
+
+require('nvim-dap-projects').search_project_config()
 
 ---@diagnostic disable-next-line: redefined-local
 local status_ok, dapui = pcall(require, 'dapui')

@@ -18,6 +18,11 @@ mason_lspconfig.setup_handlers({
     end
   end,
   ["rust_analyzer"] = function ()
-    require('user.lsp.settings.rust_analyzer')
+  end,
+  ["ltex"] = function ()
+    local status_ok, config = pcall(require, "user.lsp.settings.ltex");
+    require 'ltex-ls'.setup(
+      vim.tbl_extend("force", base_conf, config)
+    )
   end,
 })

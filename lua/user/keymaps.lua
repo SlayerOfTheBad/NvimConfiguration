@@ -9,10 +9,10 @@ vim.g.maplocalleader = " "
 
 -- Normal mode --
 -- Better window navigation
-keymap("n", "<A-h>", "<C-w>h", opts)
-keymap("n", "<A-k>", "<C-w>k", opts)
-keymap("n", "<A-j>", "<C-w>j", opts)
-keymap("n", "<A-l>", "<C-w>l", opts)
+keymap("n", "<M-h>", "<C-w>h", opts)
+keymap("n", "<M-k>", "<C-w>k", opts)
+keymap("n", "<M-j>", "<C-w>j", opts)
+keymap("n", "<M-l>", "<C-w>l", opts)
 
 keymap("n", "<A-Up>", ":resize +2<CR>", opts)
 keymap("n", "<A-Down>", ":resize -2<CR>", opts)
@@ -27,17 +27,30 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Open file explorer sidebar --
-keymap("n", "\\", ":Neotree filesystem float reveal<CR>", opts)
-keymap("n", "<leader>b", ":Neotree toggle show buffers float<CR>", opts)
-keymap("n", "<leader>g", ":Neotree toggle show git_status float<CR>", opts)
+-- keymap("n", "\\", ":Neotree filesystem float reveal<CR>", opts)
+-- keymap("n", "<leader>b", ":Neotree toggle show buffers float<CR>", opts)
+-- keymap("n", "<leader>g", ":Neotree toggle show git_status float<CR>", opts)
+keymap("n", "\\", ":NnnExplorer<CR>", opts)
 
 -- Telescope --
-keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
-keymap("n", "fw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", opts)
-keymap("n", "fd", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
-keymap("n", "fr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
+-- keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
+-- keymap("n", "fw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", opts)
+-- keymap("n", "fd", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
+-- keymap("n", "fr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
+
+-- FZF --
+keymap("n", "ff", ":FZF<CR>", opts)
+keymap("n", "fd", ":RG<CR>", opts)
+keymap("n", "<leader>b", ":Buffers<CR>", opts)
+keymap("n", "<leader>g", ":GFiles?<CR>", opts)
 
 -- Terminal --
 keymap("t", "<ESC>", "<C-\\><C-n>", opts)
+
+-- Buffer navigation --
+keymap("n", "bpp", ":previous|bd#<CR>", opts)
+keymap("n", "bnn", ":w|next|bd#|mksession!<CR>", opts)
+keymap("n", "bpd", ":bp|bd#<CR>", opts)
+keymap("n", "bnd", ":bn|bd#<CR>", opts)
 
 -- vim.api.nvim_add_user_command('FuckMyChanges', 's/\\v\\<{7}.*\\n((.*\\n){-})\\={7}(.*\\n){-}\\>{7}.*\\n/\\1/g')
