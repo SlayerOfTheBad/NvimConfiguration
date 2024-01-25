@@ -3,16 +3,16 @@ local fn = vim.fn
 -- Install packer --
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system {
-       "git",
-       "clone",
-       "--depth",
-       "1",
-       "https://github.com/wbthomason/packer.nvim",
-       install_path,
-    }
-    print "installing packer close and open NeoVim..."
-    vim.cmd [[packadd packer.nvim]]
+  PACKER_BOOTSTRAP = fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "installing packer close and open NeoVim..."
+  vim.cmd [[packadd packer.nvim]]
 end
 
 -- Reload NVim when saving plugins.lua so any changes get adapted immediately --
@@ -68,7 +68,7 @@ return packer.startup(function(use)
 
   use "rafamadriz/friendly-snippets"
 
-  use { 'SlayerOfTheBad/idris2-nvim', requires = { 'neovim/nvim-lspconfig', 'MunifTanjim/nui.nvim' } }
+  use { '~/programming/lua/idris2-nvim', requires = { 'neovim/nvim-lspconfig', 'MunifTanjim/nui.nvim' } }
 
   -- Mason --
   use "williamboman/mason.nvim"
@@ -81,22 +81,30 @@ return packer.startup(function(use)
   use "rcarriga/nvim-dap-ui"
   use "theHamsta/nvim-dap-virtual-text"
   use "nvim-telescope/telescope-dap.nvim"
+  use "ldelossa/nvim-dap-projects"
 
   -- Navigation --
+  -- use "justinmk/vim-dirvish"
+  use {
+    "junegunn/fzf",
+   run = function() vim.fn["fzf#install"]() end
+  }
+  use "junegunn/fzf.vim"
+  use "luukvbaal/nnn.nvim"
   use "nvim-telescope/telescope.nvim"
   -- use "preservim/nerdtree"
   -- use "Xuyuanp/nerdtree-git-plugin"
   -- use "tiagofumo/vim-nerdtree-syntax-highlight"
   use "ryanoasis/vim-devicons"
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
-  }
+  -- use {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v2.x",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --   }
+  -- }
 
   -- CTAGS --
   use "ludovicchabant/vim-gutentags"
@@ -118,10 +126,19 @@ return packer.startup(function(use)
   }
 
   -- Rust specific --
-  use "simrat39/rust-tools.nvim"
+  use {
+    "mrcjkb/rustaceanvim",
+    version = '^3',
+    ft = { 'rust' }
+  }
 
   -- Terminal --
   use "akinsho/toggleterm.nvim"
+
+  -- Nvim text boxes in Firefox --
+  use "glacambre/firenvim"
+
+  use "~/programming/lua/ltex-ls.nvim"
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()

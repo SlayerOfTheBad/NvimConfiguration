@@ -3,7 +3,7 @@ local options = {
   writebackup = true,
   belloff = "",           --always ring bell (for practicing purposes)
   errorbells = true,
-  browsedir = "last",
+--  bsdir = "last",
   clipboard = "unnamedplus",
   cmdheight = 2,
   cursorline = true,
@@ -15,7 +15,7 @@ local options = {
   listchars = "tab:> ,trail:-,nbsp:+",
   list = true,
   number = true,
-  relativenumber = true,
+  relativenumber = false,
   expandtab = true,
   shiftwidth = 4,
   tabstop = 4,
@@ -29,7 +29,7 @@ local options = {
   wildmode = "longest:full,full",
   exrc = true,
   secure = true,
-  foldlevel = 2,
+  foldlevel = 3,
   spelllang = 'en_gb,en_us,nl',
 }
 
@@ -40,6 +40,9 @@ end
 vim.g.airline_theme='base16_gruvbox_dark_hard'
 vim.g.airline_powerline_fonts=1
 vim.g["airline#extensions#tabline#enabled"]=1
+vim.g.gutentags_generate_on_new=0
+vim.g.gutentags_generate_on_write=0
+vim.g.gutentags_generate_on_missing=0
 
 vim.cmd [[set exrc]]
 vim.cmd [[set diffopt+=horizontal]]
