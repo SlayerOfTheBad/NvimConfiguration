@@ -14,10 +14,10 @@ keymap("n", "<M-k>", "<C-w>k", opts)
 keymap("n", "<M-j>", "<C-w>j", opts)
 keymap("n", "<M-l>", "<C-w>l", opts)
 
-keymap("n", "<A-Up>", ":resize +2<CR>", opts)
-keymap("n", "<A-Down>", ":resize -2<CR>", opts)
-keymap("n", "<A-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<A-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<A-Up>", "<cmd>resize +2<CR>", opts)
+keymap("n", "<A-Down>", "<cmd>resize -2<CR>", opts)
+keymap("n", "<A-Left>", "<cmd>vertical resize -2<CR>", opts)
+keymap("n", "<A-Right>", "<cmd>vertical resize +2<CR>", opts)
 
 -- Insert empty line and stay in normal mode --
 keymap("n", "oo", "o<ESC>", opts)
@@ -27,10 +27,10 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Open file explorer sidebar --
--- keymap("n", "\\", ":Neotree filesystem float reveal<CR>", opts)
--- keymap("n", "<leader>b", ":Neotree toggle show buffers float<CR>", opts)
--- keymap("n", "<leader>g", ":Neotree toggle show git_status float<CR>", opts)
-keymap("n", "\\", ":NnnExplorer<CR>", opts)
+-- keymap("n", "\\", "<cmd>Neotree filesystem float reveal<CR>", opts)
+-- keymap("n", "<leader>b", "<cmd>Neotree toggle show buffers float<CR>", opts)
+-- keymap("n", "<leader>g", "<cmd>Neotree toggle show git_status float<CR>", opts)
+keymap("n", "\\", "<cmd>NnnExplorer<CR>", opts)
 
 -- Telescope --
 -- keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
@@ -39,18 +39,18 @@ keymap("n", "\\", ":NnnExplorer<CR>", opts)
 -- keymap("n", "fr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
 
 -- FZF --
-keymap("n", "ff", ":FZF<CR>", opts)
-keymap("n", "fd", ":RG<CR>", opts)
-keymap("n", "<leader>b", ":Buffers<CR>", opts)
-keymap("n", "<leader>g", ":GFiles?<CR>", opts)
+keymap("n", "ff", "<cmd>FZF<CR>", opts)
+keymap("n", "fd", "<cmd>RG<CR>", opts)
+keymap("n", "<leader>b", "<cmd>Buffers<CR>", opts)
+keymap("n", "<leader>g", "<cmd>GFiles?<CR>", opts)
 
 -- Terminal --
 keymap("t", "<ESC>", "<C-\\><C-n>", opts)
 
 -- Buffer navigation --
-keymap("n", "bpp", ":previous|bd#<CR>", opts)
-keymap("n", "bnn", ":w|next|bd#|mksession!<CR>", opts)
-keymap("n", "bpd", ":bp|bd#<CR>", opts)
-keymap("n", "bnd", ":bn|bd#<CR>", opts)
+keymap("n", "bpp", "<cmd>previous|bd#<CR>", opts)
+keymap("n", "bnn", "<cmd>w|next|bd#|mksession!<CR>", opts)
+keymap("n", "bpd", "<cmd>bp|bd#<CR>", opts)
+keymap("n", "bnd", "<cmd>bn|bd#<CR>", opts)
 
 -- vim.api.nvim_add_user_command('FuckMyChanges', 's/\\v\\<{7}.*\\n((.*\\n){-})\\={7}(.*\\n){-}\\>{7}.*\\n/\\1/g')
