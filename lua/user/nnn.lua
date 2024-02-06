@@ -21,8 +21,10 @@ nnn.setup({
     prev = "<M-W>",
   },
   mappings = {
-    { "\\", function() require("nnn").toggle("explorer") end },
+    -- { "<Esc>", function() require("nnn").toggle("explorer") end },
+    -- { "\\", function() require("nnn").toggle("explorer") end },
     { "s", nnn.builtin.open_in_vsplit },
     { "S", nnn.builtin.open_in_split },
   }
 })
+
