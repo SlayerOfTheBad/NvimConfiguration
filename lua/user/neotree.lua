@@ -67,12 +67,9 @@ neotree.setup({
     filtered_items = {
       hide_dotfiles = false,
       hide_gitignored = false,
-      always_show = {
-        "vendor/magement",
-        "vendor/alumio",
-        "vendor/mediact",
-      },
     },
-    follow_current_file = true,
+    follow_current_file = {
+      enabled = true,
+    },
   },
 })
