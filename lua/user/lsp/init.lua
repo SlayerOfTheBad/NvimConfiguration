@@ -9,9 +9,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client ~= nil and client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint.enable(args.buf, true)
+            vim.lsp.inlay_hint.enable(true, {bufnr = args.buf})
             vim.api.nvim_buf_create_user_command(args.buf, "InlayHintToggle",
-                function() vim.lsp.inlay_hint.enable(args.buf, not vim.lsp.inlay_hint.is_enabled(args.buf)) end,
+                function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = args.buf}), {bufnr = args.buf}) end,
                 {}
             )
         end

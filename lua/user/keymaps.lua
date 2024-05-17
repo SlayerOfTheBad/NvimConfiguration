@@ -27,10 +27,10 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Open file explorer sidebar --
--- keymap("n", "\\", "<cmd>Neotree filesystem float reveal<CR>", opts)
--- keymap("n", "<leader>b", "<cmd>Neotree toggle show buffers float<CR>", opts)
--- keymap("n", "<leader>g", "<cmd>Neotree toggle show git_status float<CR>", opts)
-keymap("n", "\\", "<cmd>NnnExplorer<CR>", opts)
+keymap("n", "\\", ":Neotree toggle left reveal_force_cwd<CR>", opts)
+keymap("n", "<leader>b", ":Neotree toggle show buffers right<CR>", opts)
+keymap("n", "<leader>g", ":Neotree toggle show git_status<CR>", opts)
+-- keymap("n", "\\", ":NnnExplorer<CR>", opts)
 
 -- Telescope --
 -- keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
