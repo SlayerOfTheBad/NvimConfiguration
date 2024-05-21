@@ -1,13 +1,11 @@
 local opts = { noremap = true, silent = true }
 
--- Shorten keymap command --
 local keymap = vim.api.nvim_set_keymap
 
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Normal mode --
 -- Better window navigation
 keymap("n", "<M-h>", "<C-w>h", opts)
 keymap("n", "<M-k>", "<C-w>k", opts)
@@ -26,24 +24,6 @@ keymap("n", "OO", "O<ESC>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
--- Open file explorer sidebar --
-keymap("n", "\\", ":Neotree toggle left reveal_force_cwd<CR>", opts)
-keymap("n", "<leader>b", ":Neotree toggle show buffers right<CR>", opts)
-keymap("n", "<leader>g", ":Neotree toggle show git_status<CR>", opts)
--- keymap("n", "\\", ":NnnExplorer<CR>", opts)
-
--- Telescope --
--- keymap("n", "ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
--- keymap("n", "fw", "<cmd>lua require('telescope.builtin').grep_string()<CR>", opts)
--- keymap("n", "fd", "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
--- keymap("n", "fr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
-
--- FZF --
-keymap("n", "ff", "<cmd>FZF<CR>", opts)
-keymap("n", "fd", "<cmd>RG<CR>", opts)
-keymap("n", "<leader>b", "<cmd>Buffers<CR>", opts)
-keymap("n", "<leader>g", "<cmd>GFiles?<CR>", opts)
-
 -- Terminal --
 keymap("t", "<ESC>", "<C-\\><C-n>", opts)
 
@@ -52,5 +32,3 @@ keymap("n", "bpp", "<cmd>previous|bd#<CR>", opts)
 keymap("n", "bnn", "<cmd>w|next|bd#|mksession!<CR>", opts)
 keymap("n", "bpd", "<cmd>bp|bd#<CR>", opts)
 keymap("n", "bnd", "<cmd>bn|bd#<CR>", opts)
-
--- vim.api.nvim_add_user_command('FuckMyChanges', 's/\\v\\<{7}.*\\n((.*\\n){-})\\={7}(.*\\n){-}\\>{7}.*\\n/\\1/g')

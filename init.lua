@@ -1,3 +1,16 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+
 function dump(o)
     if type(o) == 'table' then
         local s = '{ '
@@ -7,24 +20,19 @@ function dump(o)
         end
         return s .. '} '
     else
-        return '"'.. tostring(o)..'"'
+        return '"' .. tostring(o) .. '"'
     end
 end
 
-require "user.plugins"
-require "user.options"
-require "user.keymaps"
-require "user.completion"
-require "user.lsp"
--- require "user.telescope"
-require "user.autopairs"
-require "user.treesitter"
-require "user.toggleterm"
-require "user.neotree"
--- require "user.nnn"
-require "user.fzf"
-require "user.dap"
--- require "user.firenvim"
-require "user.languagetool"
--- vim.cmd [[colorscheme vim]]
-vim.cmd [[colorscheme gruvbox]]
+require("lsp");
+require("keymaps");
+require("options");
+
+require("lazy").setup(
+    "plugins",
+    {
+        change_detection = {
+            notify = false,
+        },
+    }
+);
