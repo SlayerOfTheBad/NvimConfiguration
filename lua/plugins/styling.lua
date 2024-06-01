@@ -29,12 +29,5 @@ return {
             }
         },
     },
-    {
-        "echasnovski/mini.animate",
-        version = '*',
-        config = function(_, _)
-            require('mini.animate').setup()
-        end
-    },
     "ryanoasis/vim-devicons",
 }
