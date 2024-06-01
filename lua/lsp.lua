@@ -14,14 +14,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         usrcmd(bufnr, "Hover", vim.lsp.buf.hover, {})
         keymap(bufnr, "n", "'", "<cmd>Hover<CR>", opts)
-        usrcmd(bufnr, "CodeAction", vim.lsp.buf.hover, {})
-        keymap(bufnr, "n", "<leader>cd", "<cmd>CodeAction<CR>", opts)
+        usrcmd(bufnr, "CodeAction", function() vim.lsp.buf.code_action() end, {})
+        keymap(bufnr, "n", "<leader>ca", "<cmd>CodeAction<CR>", opts)
         usrcmd(bufnr, "Diagnostics", vim.diagnostic.open_float, {})
         keymap(bufnr, "n", "<leader>f", "<cmd>Diagnostics<CR>", opts)
         usrcmd(bufnr, "DiagnosticsPrev", vim.diagnostic.goto_prev, {})
-        keymap(bufnr, "n", "ej", "<cmd>DiagnosticsPrev<CR>", opts)
+        keymap(bufnr, "n", "ek", "<cmd>DiagnosticsPrev<CR>", opts)
         usrcmd(bufnr, "DiagnosticsNext", vim.diagnostic.goto_next, {})
-        keymap(bufnr, "n", "ek", "<cmd>DiagnosticsNext<CR>", opts)
+        keymap(bufnr, "n", "ej", "<cmd>DiagnosticsNext<CR>", opts)
 
         if capabilities.renameProvider then
             usrcmd(bufnr, "Rename", vim.lsp.buf.rename, {})
@@ -49,15 +49,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if capabilities.documentFormattingProvider then
-            usrcmd(bufnr, "Format", function(args)
-                local options = {}
-                if args.range > 0 then options.range = { start = { args.line1, 0 } } end
-                if args.range > 1 then options.range["end"] = { args.line2, 0 } end
-                vim.lsp.buf.format(options)
-            end, { range = capabilities.documentRangeFormattingProvider })
+            local range = capabilities.documentRangeFormattingProvider
+            local usrcmd_opts = {}
+            if range then
+                usrcmd_opts.range = true
+            end
+            local fmt = function(options)
+                return function(args)
+                    if range and args.range > 0 then options.range = { start = { args.line1, 0 } } end
+                    if range and args.range > 1 then options.range["end"] = { args.line2, 0 } end
+                    vim.lsp.buf.format(options)
+                end
+            end
+            usrcmd(bufnr, "FormatQuick", fmt({ timeout_ms = 1000 }), usrcmd_opts)
+            usrcmd(bufnr, "Format", fmt({ async = true }), usrcmd_opts)
             vim.api.nvim_create_autocmd("BufWritePre", {
                 group = "UsrLspConfig",
-                command = "Format",
+                command = "FormatQuick",
                 buffer = bufnr,
             })
         end

@@ -10,6 +10,21 @@ return {
         },
     },
     {
+        "SlayerOfTheBad/idris2-nvim",
+        cond = vim.fn.executable("idris2"),
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "MunifTanjim/nui.nvim",
+        },
+        ft = { "idris2" },
+        opts = {
+            server = require("plugins.lsp.idris2"),
+            code_action_post_hook = function(_)
+                vim.cmd("write")
+            end,
+        },
+    },
+    {
         "williamboman/mason.nvim",
         cmd = {
             "Mason",
@@ -55,6 +70,6 @@ return {
         "vigoux/ltex-ls.nvim",
         dependencies = {
             "neovim/nvim-lspconfig",
-        }
+        },
     },
 }
