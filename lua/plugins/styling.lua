@@ -29,5 +29,6 @@ return {
             }
         },
     },
-    "ryanoasis/vim-devicons",
+    -- Use Deftera186's fork because it includes fixes for NerdFonts v3.0.0
+    "Deftera186/vim-devicons",
 }
