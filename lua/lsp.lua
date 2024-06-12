@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         keymap(bufnr, "n", "ej", "<cmd>DiagnosticsNext<CR>", opts)
 
         if capabilities.renameProvider then
-            usrcmd(bufnr, "Rename", vim.lsp.buf.rename, {})
+            usrcmd(bufnr, "Rename", function() vim.lsp.buf.rename() end, {})
             keymap(bufnr, "n", "<leader>rn", "<cmd>Rename<CR>", opts)
         end
 

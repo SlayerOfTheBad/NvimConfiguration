@@ -9,8 +9,8 @@ return {
         },
         keys = {
             { "\\",        "<cmd>Neotree toggle left reveal<CR>", },
-            { "<leader>b", "<cmd>Neotree toggle show buffers right<CR>", },
-            { "<leader>g", "<cmd>Neotree toggle show git_status<CR>", },
+            { "<leader>b", "<cmd>Neotree toggle buffers right<CR>", },
+            { "<leader>g", "<cmd>Neotree toggle git_status<CR>", },
         },
         opts = {
             event_handlers = {

@@ -17,12 +17,14 @@ return {
             "MunifTanjim/nui.nvim",
         },
         ft = { "idris2" },
-        opts = {
-            server = require("plugins.lsp.idris2"),
-            code_action_post_hook = function(_)
-                vim.cmd("write")
-            end,
-        },
+        config = function()
+            require("idris2-nvim").setup({
+                server = require("plugins.lsp.idris2"),
+                code_action_post_hook = function(_)
+                    vim.cmd("write")
+                end,
+            })
+        end,
     },
     {
         "williamboman/mason.nvim",
