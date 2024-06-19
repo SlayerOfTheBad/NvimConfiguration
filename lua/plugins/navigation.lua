@@ -8,6 +8,7 @@ return {
     },
     {
         "preservim/tagbar",
+        cmd = "Tagbar",
         dependencies = {
             {
                 "skywind3000/gutentags_plus",
