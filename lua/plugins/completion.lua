@@ -38,6 +38,10 @@ return {
         cond = vim.fn.executable("rg"),
     },
     {
+        "L3MON4D3/LuaSnip",
+        build = "make install_jsregexp"
+    },
+    {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "L3MON4D3/LuaSnip",

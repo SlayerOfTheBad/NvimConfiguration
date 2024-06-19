@@ -12,6 +12,7 @@ return {
             { "<leader>b", "<cmd>Neotree toggle buffers right<CR>", },
             { "<leader>g", "<cmd>Neotree toggle git_status<CR>", },
         },
+        cmd = "Neotree",
         opts = {
             event_handlers = {
                 {
