@@ -128,6 +128,7 @@ return {
                         { name = "crates" },
                         { name = "rg",      keyword_length = 3 },
                         { name = "git" },
+                        { name = "otter" },
                     },
                     confirm_opts = {
                         behavior = cmp.ConfirmBehavior.Replace,

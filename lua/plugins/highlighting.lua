@@ -20,9 +20,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         lazy = true,
         build = ":TSUpdate",
-        config = function(lazy_plugin, opts)
-            require("nvim-treesitter.configs").setup(opts);
-
+        init = function()
             vim.o.foldmethod = 'expr'
             vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
         end,
@@ -35,12 +33,30 @@ return {
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                  init_selection = "gnn",
-                  node_incremental = "grn",
-                  scope_incremental = "grc",
-                  node_decremental = "grm",
+                    init_selection = "gnn",
+                    node_incremental = "grn",
+                    scope_incremental = "grc",
+                    node_decremental = "grm",
                 },
             },
         },
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+    },
+    {
+        "rasulomaroff/reactive.nvim",
+        opts = {
+            load = {
+                'gruvbox',
+            }
+        },
+    },
+    {
+        "zbirenbaum/neodim",
+        event = "LspAttach",
     },
 }

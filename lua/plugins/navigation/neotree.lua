@@ -68,6 +68,11 @@ return {
             },
             buffers = {
                 show_unloaded = true,
+                window = {
+                    mappings = {
+                        ["d"] = "buffer_delete",
+                    },
+                },
             },
             filesystem = {
                 filtered_items = {
@@ -78,6 +83,7 @@ return {
                     enabled = true,
                 },
             },
+            hijack_netrw_behaviour = "open_current",
         }
     },
 }
