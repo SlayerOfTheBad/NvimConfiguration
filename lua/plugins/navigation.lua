@@ -5,6 +5,11 @@ return {
         "willothy/flatten.nvim",
         lazy = false,
         priority = 1001,
+        opts = {
+            window = {
+                open = "alternate"
+            },
+        },
     },
     {
         "preservim/tagbar",
@@ -32,6 +37,17 @@ return {
         "code-biscuits/nvim-biscuits",
         dependencies = {
             "nvim-treesitter/nvim-treesitter"
+        },
+        opts = {
+            default_config = {
+                min_distance = 15,
+                prefix_string = " "
+            },
+            language_config = {
+                rust = {
+                    disabled = true,
+                },
+            },
         },
     },
     { import = "plugins.navigation" },

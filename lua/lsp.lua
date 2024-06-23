@@ -1,3 +1,25 @@
+local lsp_fns = function(otter)
+    local fns = vim.deepcopy(vim.lsp.buf)
+
+    if otter ~= nil then
+        fns = vim.tbl_deep_extend(
+            'force',
+            fns,
+            {
+                definition = otter.ask_definition,
+                type_definition = otter.ask_definition,
+                hover = otter.ask_hover,
+                references = otter.ask_references,
+                document_symbols = otter.ask_document_symbols,
+                rename = otter.ask_rename,
+                format = otter.ask_format,
+            }
+        )
+    end
+
+    return fns
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UsrLspConfig", {}),
     callback = function(args)
@@ -7,14 +29,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
         if capabilities == nil then return end
 
         local bufnr = args.buf
+        local ott_ok, otter = pcall(require, 'otter')
+        local lsp = lsp_fns(ott_ok and otter or nil)
 
         local opts = { noremap = true, silent = true }
         local usrcmd = vim.api.nvim_buf_create_user_command
         local keymap = vim.api.nvim_buf_set_keymap
 
-        usrcmd(bufnr, "Hover", vim.lsp.buf.hover, {})
+        usrcmd(bufnr, "Hover", lsp.hover, {})
         keymap(bufnr, "n", "'", "<cmd>Hover<CR>", opts)
-        usrcmd(bufnr, "CodeAction", function() vim.lsp.buf.code_action() end, {})
+        usrcmd(bufnr, "CodeAction", function() lsp.code_action() end, {})
         keymap(bufnr, "n", "<leader>ca", "<cmd>CodeAction<CR>", opts)
         usrcmd(bufnr, "Diagnostics", vim.diagnostic.open_float, {})
         keymap(bufnr, "n", "<leader>f", "<cmd>Diagnostics<CR>", opts)
@@ -23,13 +47,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         usrcmd(bufnr, "DiagnosticsNext", vim.diagnostic.goto_next, {})
         keymap(bufnr, "n", "ej", "<cmd>DiagnosticsNext<CR>", opts)
 
-        if capabilities.renameProvider then
-            usrcmd(bufnr, "Rename", function() vim.lsp.buf.rename() end, {})
+        if capabilities.renameProvider or ott_ok then
+            usrcmd(bufnr, "Rename", function() lsp.rename() end, {})
             keymap(bufnr, "n", "<leader>rn", "<cmd>Rename<CR>", opts)
         end
 
         if capabilities.signatureHelpProvider then
-            usrcmd(bufnr, "SignatureHelp", vim.lsp.buf.signature_help, {})
+            usrcmd(bufnr, "SignatureHelp", lsp.signature_help, {})
             keymap(bufnr, "n", "<C-k>", "<cmd>SignatureHelp<CR>", opts)
         end
 
@@ -48,7 +72,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             )
         end
 
-        if capabilities.documentFormattingProvider then
+        if capabilities.documentFormattingProvider or ott_ok then
             local range = capabilities.documentRangeFormattingProvider
             local usrcmd_opts = {}
             if range then
@@ -58,7 +82,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 return function(args)
                     if range and args.range > 0 then options.range = { start = { args.line1, 0 } } end
                     if range and args.range > 1 then options.range["end"] = { args.line2, 0 } end
-                    vim.lsp.buf.format(options)
+                    lsp.format(options)
                 end
             end
             usrcmd(bufnr, "FormatQuick", fmt({ timeout_ms = 1000 }), usrcmd_opts)
@@ -73,13 +97,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         if capabilities.documentHighlightProvider then
             vim.api.nvim_create_autocmd("CursorHold", {
                 group = "UsrLspConfig",
-                callback = vim.lsp.buf.document_highlight,
+                callback = lsp.document_highlight,
                 buffer = bufnr,
             }
             )
             vim.api.nvim_create_autocmd("CursorMoved", {
                 group = "UsrLspConfig",
-                callback = vim.lsp.buf.clear_references,
+                callback = lsp.clear_references,
                 buffer = bufnr,
             }
             )
@@ -87,12 +111,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         if capabilities.referencesProvider then
             keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+        elseif ott_ok then
+            keymap(bufnr, "n", "gr", "<lua>require('otter').ask_references()<CR>", opts)
         end
         if capabilities.definitionProvider then
             keymap(bufnr, "n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
         end
         if capabilities.typeDefinitionProvider then
             keymap(bufnr, "n", "gD", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+        elseif ott_ok then
+            keymap(bufnr, "n", "gD", "<lua>require('otter').ask_type_definitions()<CR>", opts)
         end
         if capabilities.implementationProvider then
             keymap(bufnr, "n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)

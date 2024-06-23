@@ -74,4 +74,49 @@ return {
             "neovim/nvim-lspconfig",
         },
     },
+    {
+        "jmbuhr/otter.nvim",
+        config = function(lazy_config, opts)
+            local otter = require('otter')
+            otter.setup(opts)
+            vim.api.nvim_create_user_command(
+                "Otter",
+                function()
+                    otter.activate()
+                end,
+                {}
+            )
+
+            vim.api.nvim_create_autocmd(
+                { "BufEnter", "BufWinEnter", "FileType" },
+                {
+                    pattern = lazy_config.ft,
+                    command = "Otter",
+                }
+            )
+        end,
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        ft = {
+            'md',
+            'markdown',
+            'org',
+        },
+        cmd = {
+            "Otter",
+        },
+        opts = {
+            lsp = {
+                diagnostic_update_events = {
+                    "BufWritePost",
+                    "InsertLeave",
+                    "TextChanged",
+                },
+            },
+            buffers = { set_filetype = true, },
+            handle_leading_whitespace = true,
+        }
+    }
 }
