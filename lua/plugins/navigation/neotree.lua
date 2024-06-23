@@ -47,7 +47,7 @@ return {
                     Class = { icon = "󰌗 ", hl = "Include" },
                     Property = { icon = "󰆧 ", hl = "@property" },
                     Enum = { icon = " ", hl = "@number" },
-                    Function = { icon = "󰊕", hl = "Function" },
+                    Function = { icon = "󰊕 ", hl = "Function" },
                     String = { icon = "󰀬 ", hl = "String" },
                     Number = { icon = "󰎠 ", hl = "Number" },
                     Array = { icon = "󰅪 ", hl = "Type" },
@@ -55,7 +55,7 @@ return {
                     Key = { icon = "󰌋 ", hl = "" },
                     Struct = { icon = "󰌗 ", hl = "Type" },
                     Operator = { icon = "󰆕 ", hl = "Operator" },
-                    TypeParameter = { icon = "󰊄", hl = "Type" },
+                    TypeParameter = { icon = "󰊄 ", hl = "Type" },
                     StaticMethod = { icon = '󰠄 ', hl = 'Function' },
                 }
             },

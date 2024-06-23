@@ -1,22 +1,22 @@
 local lsp_fns = function(otter)
     local fns = vim.deepcopy(vim.lsp.buf)
 
-    if otter ~= nil then
-        fns = vim.tbl_deep_extend(
-            'force',
-            fns,
-            {
-                definition = otter.ask_definition,
-                type_definition = otter.ask_definition,
-                hover = otter.ask_hover,
-                references = otter.ask_references,
-                document_symbols = otter.ask_document_symbols,
-                rename = otter.ask_rename,
-                format = otter.ask_format,
-            }
-        )
-    end
-
+    -- if otter ~= nil then
+    --     fns = vim.tbl_deep_extend(
+    --         'force',
+    --         fns,
+    --         {
+    --             definition = otter.ask_definition,
+    --             type_definition = otter.ask_definition,
+    --             hover = otter.ask_hover,
+    --             references = otter.ask_references,
+    --             document_symbols = otter.ask_document_symbols,
+    --             rename = otter.ask_rename,
+    --             format = otter.ask_format,
+    --         }
+    --     )
+    -- end
+    --
     return fns
 end
 
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         usrcmd(bufnr, "DiagnosticsNext", vim.diagnostic.goto_next, {})
         keymap(bufnr, "n", "ej", "<cmd>DiagnosticsNext<CR>", opts)
 
-        if capabilities.renameProvider or ott_ok then
+        if capabilities.renameProvider then
             usrcmd(bufnr, "Rename", function() lsp.rename() end, {})
             keymap(bufnr, "n", "<leader>rn", "<cmd>Rename<CR>", opts)
         end
@@ -72,7 +72,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             )
         end
 
-        if capabilities.documentFormattingProvider or ott_ok then
+        if capabilities.documentFormattingProvider then
             local range = capabilities.documentRangeFormattingProvider
             local usrcmd_opts = {}
             if range then
@@ -111,16 +111,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         if capabilities.referencesProvider then
             keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-        elseif ott_ok then
-            keymap(bufnr, "n", "gr", "<lua>require('otter').ask_references()<CR>", opts)
         end
         if capabilities.definitionProvider then
             keymap(bufnr, "n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
         end
         if capabilities.typeDefinitionProvider then
             keymap(bufnr, "n", "gD", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-        elseif ott_ok then
-            keymap(bufnr, "n", "gD", "<lua>require('otter').ask_type_definitions()<CR>", opts)
         end
         if capabilities.implementationProvider then
             keymap(bufnr, "n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
