@@ -22,11 +22,6 @@ return {
             vim.g["airline#extensions#tabline#enabled"] = 1
         end,
     },
-    {
-        "miversen33/sunglasses.nvim",
-        config = true,
-        event = "UIEnter",
-    },
     -- Use Deftera186's fork because it includes fixes for NerdFonts v3.0.0
     "Deftera186/vim-devicons",
     -- {
