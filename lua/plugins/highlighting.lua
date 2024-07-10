@@ -49,11 +49,20 @@ return {
     },
     {
         "rasulomaroff/reactive.nvim",
+        event = "UIEnter",
+        dependencies = {
+            "miversen33/sunglasses.nvim",
+        },
         opts = {
             load = {
                 'gruvbox',
             }
         },
+    },
+    {
+        "miversen33/sunglasses.nvim",
+        config = true,
+        event = "UIEnter",
     },
     {
         "zbirenbaum/neodim",
