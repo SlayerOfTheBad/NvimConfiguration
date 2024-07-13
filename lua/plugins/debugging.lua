@@ -19,7 +19,7 @@ return {
         dependencies = {
             "ellisonleao/gruvbox.nvim",
         },
-        setup = function()
+        config = function()
             local perfanno = require("perfanno")
             local util = require("perfanno.util")
 
