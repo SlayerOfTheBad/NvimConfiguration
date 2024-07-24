@@ -85,6 +85,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     lsp.format(options)
                 end
             end
+            vim.bo[bufnr].formatexpr = 'v:lua.vim.lsp.formatexpr(#{timeout_ms:1000})'
             usrcmd(bufnr, "FormatQuick", fmt({ timeout_ms = 1000 }), usrcmd_opts)
             usrcmd(bufnr, "Format", fmt({ async = true }), usrcmd_opts)
             vim.api.nvim_create_autocmd("BufWritePre", {

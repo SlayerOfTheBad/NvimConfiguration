@@ -9,6 +9,9 @@ return {
         end,
         opts = {
             terminal_colors = true,
+            overrides = {
+                DiffAdd = { bg = '#151333' }
+            }
         },
     },
     {
