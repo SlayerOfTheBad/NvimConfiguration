@@ -1,12 +1,12 @@
 local csharpier_running = nil
 local csharpier_port = 49152
 
-local buffer_content = function(bufnr)
+local function buffer_content(bufnr)
     local content = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
     return table.concat(content, "\n")
 end
 
-local handle_output = function(bufnr, out)
+local function handle_output(bufnr, out)
     if out.code ~= 0 then
         vim.api.nvim_err_writeln(out.stderr)
         return;
@@ -27,7 +27,7 @@ local handle_output = function(bufnr, out)
     )
 end
 
-local format_buffer = function(bufnr, port, timeout)
+local function format_buffer(bufnr, port, timeout)
     local request = {
         fileName = vim.api.nvim_buf_get_name(bufnr),
         fileContents = buffer_content(bufnr),
@@ -51,7 +51,7 @@ local format_buffer = function(bufnr, port, timeout)
     handle_output(bufnr, handle.wait(handle, timeout))
 end
 
-local csharpier_path = function()
+local function csharpier_path()
     if vim.fn.executable('dotnet-csharpier') then
         return 'dotnet-csharpier'
     end
@@ -74,7 +74,7 @@ local csharpier_path = function()
     return nil
 end
 
-local start_csharpier = function(path, port)
+local function start_csharpier(path, port)
     local success, _ = pcall(
         vim.system,
         {
@@ -90,25 +90,15 @@ local start_csharpier = function(path, port)
     csharpier_running = success
 end
 
-local configure_format = function(bufnr)
+local function configure_format(bufnr)
     local usrcmd = vim.api.nvim_buf_create_user_command
-    local fmt = function(timeout)
+    local function fmt(timeout)
         return function()
             format_buffer(bufnr, csharpier_port, timeout)
         end
     end
-    usrcmd(
-        bufnr,
-        "FormatQuick",
-        fmt(1000),
-        {}
-    )
-    usrcmd(
-        bufnr,
-        "Format",
-        fmt(30000),
-        {}
-    )
+    usrcmd(bufnr, "FormatQuick", fmt(1000), {})
+    usrcmd(bufnr, "Format", fmt(30000), {})
     vim.api.nvim_create_autocmd("BufWritePre", {
         group = "UsrLspConfig",
         command = "FormatQuick",
@@ -116,7 +106,7 @@ local configure_format = function(bufnr)
     })
 end
 
-local configure_csharpier = function(bufnr)
+local function configure_csharpier(bufnr)
     local path = csharpier_path()
 
     if path == nil then return end
@@ -130,8 +120,21 @@ local configure_csharpier = function(bufnr)
     configure_format(bufnr)
 end
 
+
 return {
     on_attach = function(client, bufnr)
+        local lsp = vim.lsp.buf;
+        local opts = { noremap = true, silent = true }
+        local usrcmd = vim.api.nvim_buf_create_user_command
+        local keymap = vim.api.nvim_buf_set_keymap
+
+        usrcmd(bufnr, "Rename", function() lsp.rename() end, {})
+        keymap(bufnr, "n", "<leader>rn", "<cmd>Rename<CR>", opts)
+
+        usrcmd(bufnr, "SignatureHelp", lsp.signature_help, {})
+        keymap(bufnr, "n", "<C-k>", "<cmd>SignatureHelp<CR>", opts)
+
+        keymap(bufnr, "n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
         configure_csharpier(bufnr)
     end,
 }

@@ -33,22 +33,5 @@ return {
             },
         },
     },
-    {
-        "code-biscuits/nvim-biscuits",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter"
-        },
-        opts = {
-            default_config = {
-                min_distance = 15,
-                prefix_string = " "
-            },
-            language_config = {
-                rust = {
-                    disabled = true,
-                },
-            },
-        },
-    },
     { import = "plugins.navigation" },
 }
