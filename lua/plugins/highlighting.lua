@@ -1,22 +1,5 @@
 return {
     {
-        "HiPhish/rainbow-delimiters.nvim",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        main = 'rainbow-delimiters.setup',
-        opts = {
-            highlight = {
-                'RainbowDelimiterRed',
-                'RainbowDelimiterOrange',
-                'RainbowDelimiterYellow',
-                'RainbowDelimiterGreen',
-                'RainbowDelimiterBlue',
-                'RainbowDelimiterViolet',
-            },
-        },
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
         lazy = true,
         build = ":TSUpdate",
@@ -42,10 +25,32 @@ return {
         },
     },
     {
+        "HiPhish/rainbow-delimiters.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        main = 'rainbow-delimiters.setup',
+        opts = {
+            highlight = {
+                'RainbowDelimiterRed',
+                'RainbowDelimiterOrange',
+                'RainbowDelimiterYellow',
+                'RainbowDelimiterGreen',
+                'RainbowDelimiterBlue',
+                'RainbowDelimiterViolet',
+            },
+        },
+    },
+    {
         "nvim-treesitter/nvim-treesitter-context",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
+    },
+    {
+        "miversen33/sunglasses.nvim",
+        config = true,
+        event = "UIEnter",
     },
     {
         "rasulomaroff/reactive.nvim",
@@ -58,11 +63,6 @@ return {
                 'gruvbox',
             }
         },
-    },
-    {
-        "miversen33/sunglasses.nvim",
-        config = true,
-        event = "UIEnter",
     },
     {
         "zbirenbaum/neodim",
