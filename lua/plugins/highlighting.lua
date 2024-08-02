@@ -49,8 +49,10 @@ return {
     },
     {
         "miversen33/sunglasses.nvim",
-        config = true,
-        event = "UIEnter",
+        config = function(_, opts)
+            require('sunglasses').setup(opts)
+            vim.cmd.SunglassesDisable()
+        end,
     },
     {
         "rasulomaroff/reactive.nvim",
