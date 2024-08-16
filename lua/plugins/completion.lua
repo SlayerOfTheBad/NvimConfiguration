@@ -80,6 +80,14 @@ return {
 
             cmp.setup(
                 {
+                    enabled = function()
+                        local disabled_buftypes = { "prompt", "nofile" }
+                        local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+                        if vim.tbl_contains(disabled_buftypes, buftype) then
+                            return false
+                        end
+                        return true
+                    end,
                     snippet = {
                         expand = function(args)
                             require('luasnip').lsp_expand(args.body)
