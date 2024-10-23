@@ -12,6 +12,13 @@ return {
         },
     },
     {
+        "ggandor/leap.nvim",
+        lazy = false,
+        config = function(_, opts)
+            require('leap').create_default_mappings()
+        end,
+    },
+    {
         "preservim/tagbar",
         cmd = "Tagbar",
         dependencies = {

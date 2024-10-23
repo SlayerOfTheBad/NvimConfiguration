@@ -5,7 +5,6 @@ local colors = {
     green        = '#b8bb26',
     blue         = '#83a598',
     yellow       = '#fe8019',
-    darkyellow   = '#d36912',
     gray         = '#a89984',
     darkgray     = '#3c3836',
     lightgray    = '#504945',
@@ -74,21 +73,21 @@ return {
         },
         n = {
             hl = {
-                ReactiveCursor = { bg = colors.gray },
+                ReactiveCursor = { bg = '#9490d5' },
             },
             winhl = {
-                CursorLine = { bg = colors.darkgray },
-                CursorLineNr = { fg = colors.black, bg = colors.lightgray },
+                CursorLine = { bg = '#151333' },
+                CursorLineNr = { fg = '#ffffff', bg = '#21202e' },
             },
         },
         -- visual
         [{ 'v', 'V', '\x16' }] = {
             hl = {
-                ReactiveCursor = { bg = '#fed5b4' },
+                ReactiveCursor = { bg = '#d8b4fe' },
             },
             winhl = {
-                CursorLineNr = { fg = '#fed5b4' },
-                Visual = { bg = '#813f09' },
+                CursorLineNr = { fg = '#d8b4fe' },
+                Visual = { bg = '#4c0981' },
             },
         },
         -- select

@@ -15,14 +15,28 @@ return {
         },
     },
     {
-        "vim-airline/vim-airline",
-        dependencies = {
-            "vim-airline/vim-airline-themes",
-        },
-        config = function(lazy_config, opts)
-            vim.g.airline_theme = 'base16_gruvbox_dark_hard'
-            vim.g["airline#extensions#tabline#enabled"] = 1
-        end,
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {
+            options = {
+                theme = "gruvbox"
+            },
+            extensions = {
+                'mason',
+                'neo-tree',
+                'man',
+                'fugitive',
+                'toggleterm',
+            },
+            tabline = {
+                lualine_a = { 'buffers' },
+                lualine_b = { 'branch' },
+                lualine_c = { 'filename' },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = { 'tabs' }
+            },
+        }
     },
     -- Use Deftera186's fork because it includes fixes for NerdFonts v3.0.0
     "Deftera186/vim-devicons",
