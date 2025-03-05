@@ -1,7 +1,7 @@
 return {
     {
         "mrcjkb/rustaceanvim",
-        version = "^4",
+        version = "^5",
     },
     {
         "hrsh7th/cmp-nvim-lsp",
@@ -10,7 +10,7 @@ return {
         },
     },
     {
-        "SlayerOfTheBad/idris2-nvim",
+        "idris-community/idris2-nvim",
         cond = vim.fn.executable("idris2"),
         dependencies = {
             "neovim/nvim-lspconfig",
@@ -18,11 +18,15 @@ return {
         },
         ft = { "idris2" },
         config = function()
-            require("idris2-nvim").setup({
+            require("idris2").setup({
                 server = require("plugins.lsp.idris2"),
-                code_action_post_hook = function(_)
-                    vim.cmd("write")
+                code_action_post_hook = function(action)
+                    if action ~= nil then
+                        vim.cmd("write")
+                    end
                 end,
+                use_default_semantic_hl_groups = false,
+                default_regexp_syntax = false,
             })
         end,
     },
@@ -76,36 +80,13 @@ return {
     },
     {
         "jmbuhr/otter.nvim",
-        config = function(lazy_config, opts)
-            local otter = require('otter')
-            otter.setup(opts)
-            vim.api.nvim_create_user_command(
-                "Otter",
-                function()
-                    otter.activate()
-                end,
-                {}
-            )
-
-            vim.api.nvim_create_autocmd(
-                { "BufEnter", "BufWinEnter", "FileType" },
-                {
-                    pattern = lazy_config.ft,
-                    command = "Otter",
-                }
-            )
-        end,
         dependencies = {
-            "neovim/nvim-lspconfig",
             "nvim-treesitter/nvim-treesitter",
         },
         ft = {
             'md',
             'markdown',
             'org',
-        },
-        cmd = {
-            "Otter",
         },
         opts = {
             lsp = {

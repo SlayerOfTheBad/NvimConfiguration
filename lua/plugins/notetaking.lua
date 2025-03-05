@@ -1,7 +1,7 @@
 return {
     {
         "nvim-orgmode/orgmode",
-        tag = "0.3.4",
+        -- tag = "0.3.4",
         event = 'VeryLazy',
         ft = { 'org' },
         config = function(_, opts)
@@ -22,6 +22,10 @@ return {
         opts = {
             org_agenda_files = '~/Notes/**/*',
             org_default_notes_files = '~/Notes/refile.org',
+            org_startup_folded = 'inherit',
+            emacs_config = {
+                config_path = '$HOME/.emacs.d/early-init.el',
+            },
             ui = {
                 menu = {
                     handler = function(data)
@@ -55,12 +59,6 @@ return {
     },
     {
         "chipsenkbeil/org-roam.nvim",
-        tag = "0.1.0",
-        dependencies = {
-            {
-                dir = "~/Projects/orgmode-links-refactor",
-            },
-        },
         config = function()
             require("org-roam").setup({
                 directory = "~/Notes/org_roam",

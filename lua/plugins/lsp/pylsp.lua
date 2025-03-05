@@ -14,4 +14,12 @@ vim.system({
     "python-lsp-ruff",
 })
 
-return {}
+return {
+    pylsp = {
+        plugins = {
+            pylsp_mypy = {
+                dmypy = true,
+            },
+        },
+    },
+}

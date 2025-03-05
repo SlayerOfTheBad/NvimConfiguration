@@ -46,6 +46,10 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
+        opts = {
+            enable = true,
+            multiline_threshold = 12,
+        }
     },
     {
         "miversen33/sunglasses.nvim",

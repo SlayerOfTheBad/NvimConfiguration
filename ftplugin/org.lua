@@ -9,4 +9,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.wo.conceallevel = 2
-vim.wo.concealcursor = 'c'
+vim.wo.concealcursor = 'cn'

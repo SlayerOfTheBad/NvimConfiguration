@@ -1,25 +1,3 @@
-local lsp_fns = function(otter)
-    local fns = vim.deepcopy(vim.lsp.buf)
-
-    -- if otter ~= nil then
-    --     fns = vim.tbl_deep_extend(
-    --         'force',
-    --         fns,
-    --         {
-    --             definition = otter.ask_definition,
-    --             type_definition = otter.ask_definition,
-    --             hover = otter.ask_hover,
-    --             references = otter.ask_references,
-    --             document_symbols = otter.ask_document_symbols,
-    --             rename = otter.ask_rename,
-    --             format = otter.ask_format,
-    --         }
-    --     )
-    -- end
-    --
-    return fns
-end
-
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UsrLspConfig", {}),
     callback = function(args)
@@ -29,8 +7,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         if capabilities == nil then return end
 
         local bufnr = args.buf
-        local ott_ok, otter = pcall(require, 'otter')
-        local lsp = lsp_fns(ott_ok and otter or nil)
+        local lsp = vim.lsp.buf
 
         local opts = { noremap = true, silent = true }
         local usrcmd = vim.api.nvim_buf_create_user_command
