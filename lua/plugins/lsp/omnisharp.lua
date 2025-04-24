@@ -48,7 +48,7 @@ local function format_buffer(bufnr, port, timeout)
         }
     )
 
-    handle_output(bufnr, handle.wait(handle, timeout))
+    handle_output(bufnr, handle:wait(timeout))
 end
 
 local function csharpier_path()
@@ -75,7 +75,7 @@ local function csharpier_path()
 end
 
 local function start_csharpier(path, port)
-    local success, _ = pcall(
+    local success, out = pcall(
         vim.system,
         {
             path,
@@ -84,7 +84,9 @@ local function start_csharpier(path, port)
             tostring(port),
         },
         {},
-        function() csharpier_running = nil end
+        function(obj)
+            csharpier_running = nil
+        end
     )
 
     csharpier_running = success

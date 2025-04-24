@@ -2,6 +2,7 @@ return {
     {
         "mrcjkb/rustaceanvim",
         version = "^5",
+        lazy = false,
     },
     {
         "hrsh7th/cmp-nvim-lsp",
