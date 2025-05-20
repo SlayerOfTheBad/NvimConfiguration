@@ -12,14 +12,23 @@ vim.system({
     "install",
     "pylsp-mypy",
     "python-lsp-ruff",
+    "python-lsp-server[pylint]",
 })
 
 return {
-    pylsp = {
-        plugins = {
-            pylsp_mypy = {
-                dmypy = true,
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    enabled = false,
+                },
+                pylsp_mypy = {
+                    dmypy = true,
+                },
+                pylint = {
+                    enabled = true,
+                }
             },
         },
-    },
+    }
 }

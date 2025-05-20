@@ -31,13 +31,39 @@ local options = {
     spelllang = 'en_gb,en_us,nl',
     updatetime = 500,
     wildmode = "longest:full,full",
-    wrap = false,
+    wrap = true,
     writebackup = true,
 }
 
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
+
+local diagnostics_config = {
+    underline = true,
+    virtual_lines = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.HINT] = "",
+            [vim.diagnostic.severity.INFO] = "",
+        },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+            [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+            [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+            [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+        }
+    },
+    float = {
+        source = true,
+    },
+    update_on_insert = true,
+    severity_sort = true,
+}
+
+vim.diagnostic.config(diagnostics_config)
 
 vim.g.gutentags_generate_on_new = 0
 vim.g.gutentags_generate_on_write = 0
@@ -51,16 +77,6 @@ vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set matchpairs+=<:>]]
 
 vim.g.neo_tree_remove_legacy_commands = 1
-local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-}
-
-for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
 
 vim.g.rustaceanvim = {
     server = {
