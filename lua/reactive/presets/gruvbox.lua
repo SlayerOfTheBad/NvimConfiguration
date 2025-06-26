@@ -63,24 +63,24 @@ return {
                 CursorLineNr = { fg = '#5eead4', bg = '#012828' },
             },
         },
-        c = {
-            hl = {
-                ReactiveCursor = { bg = '#cbd5e1' },
-            },
-            winhl = {
-                CursorLine = { bg = '#202020' },
-                CursorLineNr = { fg = '#ffffff', bg = '#303030' },
-            },
-        },
-        n = {
-            hl = {
-                ReactiveCursor = { bg = colors.gray },
-            },
-            winhl = {
-                CursorLine = { bg = colors.darkgray },
-                CursorLineNr = { fg = colors.black, bg = colors.lightgray },
-            },
-        },
+        -- c = {
+        --     hl = {
+        --         ReactiveCursor = { bg = '#cbd5e1' },
+        --     },
+        --     winhl = {
+        --         CursorLine = { bg = '#202020' },
+        --         CursorLineNr = { fg = '#ffffff', bg = '#303030' },
+        --     },
+        -- },
+        -- n = {
+        --     hl = {
+        --         ReactiveCursor = { bg = colors.gray },
+        --     },
+        --     winhl = {
+        --         CursorLine = { bg = colors.darkgray },
+        --         CursorLineNr = { fg = colors.black, bg = colors.lightgray },
+        --     },
+        -- },
         -- visual
         [{ 'v', 'V', '\x16' }] = {
             hl = {

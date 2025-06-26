@@ -1,5 +1,8 @@
 return {
     {
+        "artemave/workspace-diagnostics.nvim"
+    },
+    {
         "mrcjkb/rustaceanvim",
         version = "^5",
         lazy = false,
@@ -31,7 +34,7 @@ return {
         end,
     },
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         cmd = {
             "Mason",
             "MasonUpdate",
@@ -67,27 +70,17 @@ return {
         }
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         dependencies = {
             "neovim/nvim-lspconfig",
+            "mason-org/mason.nvim",
         },
         opts = {
-            handlers = {
-                function(server)
-                    local lspconfig = require("lspconfig")
-                    local base_conf = require("plugins.lsp.base_conf")
-                    local status_ok, config = pcall(require, "plugins.lsp." .. server);
-                    if status_ok then
-                        lspconfig[server].setup(
-                            vim.tbl_extend("force", base_conf, config)
-                        )
-                    else
-                        lspconfig[server].setup(base_conf)
-                    end
-                end,
-                ["rust_analyzer"] = function()
-                end,
-            },
+            automatic_enable = {
+                exclude = {
+                    "ltex"
+                }
+            }
         },
     },
     {

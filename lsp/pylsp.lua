@@ -6,7 +6,7 @@ if err ~= nil or not pylsp:is_installed() then
 end
 
 vim.system({
-    pylsp:get_install_path() .. "/venv/bin/python",
+    vim.fn.expand("$MASON/packages/python-lsp-server/venv/bin/python"),
     "-m",
     "pip",
     "install",
